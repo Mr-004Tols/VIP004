@@ -1,5 +1,5 @@
 #!/bin/bash
-
+python2 meizu.py
 red='\e[1;31m'
 green='\e[1;32m'
 yellow='\e[1;33m'
@@ -14,7 +14,7 @@ clear
 echo -e $'''
 \033[1;31m ┏━┓┏━┓      \033[1;36m┏┳┓┳ ┳┳ ┏┳┓┳  ┏┓ ┳━┓┳ ┳┏┳┓┳━┓
 \033[1;31m ┃┏┗┛┓┃      \033[1;36m┃┃┃┃ ┃┃  ┃ ┃  ┣┻┓┣┳┛┃ ┃ ┃ ┃┫
-\033[1;31m ┗┓▋▋┏┛      \033[1;36m┻ ┻┗━┛┻━┛┻ ┻  ┗━┛┻┗━┗━┛ ┻ ┻━┛
+\033[1;31m ┗┓•×┏┛      \033[1;36m┻ ┻┗━┛┻━┛┻ ┻  ┗━┛┻┗━┗━┛ ┻ ┻━┛
 \033[1;31m┏━┻┓╲┗━━━━┓┏┓       \033[1;34m┳━┓┏━┓┏━┓┏━┓┳━┓  ┳ ┳━┓
 \033[1;31m┃▎▎┃╲╲╲╲╲╲┣━┛       \033[1;34m┃┫ ┃ ┃┣┳┛┃  ┃┫   ┃ ┃ ┓
 \033[1;31m┗━┳┻▅┛╲╲╲╲┃         \033[1;34m┻  ┗━┛┻┗━┗━┛┻━┛  ┻ ┗━┛
@@ -26,8 +26,7 @@ echo -e $'''
 \033[1;31m║   \033[1;37m Resikonya Kalian Tanggung Sendiri Asw\033[1;31m║
 \033[1;31m╚════════════════════════════════════════╝
 \033[1;32m------------------------------------------'''
-python2 meizu.py
-clear
+
 dependencies=( "jq" "curl" )
 for i in "${dependencies[@]}"
 do
@@ -125,43 +124,3 @@ function brute(){
 )
 
 rm target
-
-# Mr.004
-# 00ErorSystem
-from requests import Session
-import re, sys
-s = Session()
-
-try:
-	print("\n\n*SMS Gratis by Mr.004 - 004ErorSyestem Gwe Ngga Recode Babi Asw\n * Gunakan kode negara (ex: 628xxxxx)\n")
-	no = int(input(" Nomor : "))
-	msg = input(" Pesan : ")
-except:
-	print("\n\t* Cek nomermu atau pesanmu! *")
-	sys.exit()
-
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36',
-    'Referer': 'http://sms.payuterus.biz/alpha/'
-}
-
-bypass = s.get("http://sms.payuterus.biz/alpha/?a=keluar", headers=headers).text
-key = re.findall(r'value="(\d+)"', bypass)[0]
-jml = re.findall(r'<span>(.*?) = </span>', bypass)[0]
-captcha = eval(jml.replace("x", "*").replace(":", "/"))
-
-data = {
-	'nohp':no,
-	'pesan':msg,
-	'captcha':captcha,
-	'key':key
-}
-
-send = s.post("http://sms.payuterus.biz/alpha/send.php", headers=headers, data=data).text
-
-if 'SMS Gratis Telah Dikirim bilang apa asw ke mr.004' in send:
-	print(f"\n  [ Pengiriman sukses ]\n  [ {no} : {msg} ]\n")
-elif 'MAAF....!' in send:
-	print("\n  [ Mohon tunggu ampe nickname lu modar  untuk mengirim pesan yg sama ]\n")
-else:
-	print("\n  [ Pengiriman gagal lu toxic anjay]\n")
