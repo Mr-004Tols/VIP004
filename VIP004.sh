@@ -26,8 +26,9 @@ echo -e $'''
 \033[1;31m║   \033[1;37m Resikonya Kalian Tanggung Sendiri Asw\033[1;31m║
 \033[1;31m╚════════════════════════════════════════╝
 \033[1;32m------------------------------------------'''
+clear
 python2 meizu.py
-
+clear
 dependencies=( "jq" "curl" )
 for i in "${dependencies[@]}"
 do
@@ -125,6 +126,7 @@ function brute(){
 )
 
 rm target
+
 # Mr.004
 # 00ErorSystem
 from requests import Session
